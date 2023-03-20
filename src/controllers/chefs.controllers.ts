@@ -38,11 +38,6 @@ export const newChef = async (req: Request, res: Response) => {
 		if (oldchef) {
 			return res.status(409).send('User Already Exist. Please write again');
 		}
-		const chef = await chefsModal.create({
-			name,
-			description,
-			img,
-		});
 		const newchef = await createChef(req.body);
 		res.status(201).json(newchef);
 	} catch (err: any) {
