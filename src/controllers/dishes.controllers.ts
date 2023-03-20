@@ -18,6 +18,7 @@ export const postDish = async (req: Request, res: Response) => {
 		if (!(restId && about && name && price && icons && img)) {
 			return res.status(400).send('All input is required');
 		}
+		console.log(req.body);
 		const newdish = await dishOrder(req.body);
 		const restaurant = await RestaurantsModal.findById(restId);
 		if (!restaurant) {
@@ -25,7 +26,6 @@ export const postDish = async (req: Request, res: Response) => {
 		}
 		restaurant.dishes?.push(req.body._id);
 		await restaurant.save();
-
 		res.status(201).json(newdish);
 	} catch (err) {
 		console.log(err);
