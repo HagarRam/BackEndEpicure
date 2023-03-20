@@ -1,6 +1,7 @@
 import { DishesModal, dishesSchema, IDishes } from '../model/dishes.model';
 import { IRestaurants, RestaurantsModal } from '../model/restaurant.model';
-
+import express, { Request, Response } from 'express';
+import { chefsModal } from '../model/chefs.model';
 export const getRestaurants = async () => {
 	try {
 		const Restaurants = await RestaurantsModal.find();
@@ -30,6 +31,9 @@ export const removeRest = async (restId: string) => {
 
 export const newRestaurant = async (rest: IRestaurants) => {
 	const newRest = new RestaurantsModal(rest);
+	const restChef = await chefsModal.findById(rest.chefid);
+	restChef?.restaurant?.push(newRest._id);
+	await restChef?.save();
 	try {
 		await newRest.save();
 		return newRest;
