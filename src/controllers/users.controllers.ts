@@ -12,7 +12,6 @@ export const getAllUsers = async (req: Request, res: Response) => {
 		const users = await getUsers();
 		return res.status(200).json(users);
 	} catch (err) {
-		alert(err);
 		throw err;
 	}
 };
@@ -43,8 +42,7 @@ export const newUser = async (req: Request, res: Response) => {
 		const newuser = await createUser(user);
 		res.status(201).json(newuser);
 	} catch (err) {
-		alert(err);
-		console.log(err);
+		throw err;
 	}
 };
 
@@ -64,6 +62,6 @@ export const getoldUser = async function (req: Request, res: Response) {
 			res.status(201).json(user);
 		}
 	} catch (err) {
-		console.log(err);
+		throw err;
 	}
 };

@@ -8,7 +8,6 @@ export const getAllDishes = async (req: Request, res: Response) => {
 		const dishes = await getDishes();
 		return res.status(200).json(dishes);
 	} catch (err) {
-		console.log(err);
 		throw err;
 	}
 };
@@ -35,7 +34,6 @@ export const postDish = async (req: Request, res: Response) => {
 		await restaurant.save();
 		res.status(201).json(newdish);
 	} catch (err) {
-		alert(err);
 		throw err;
 	}
 };

@@ -63,7 +63,6 @@ export const newRest = async (req: Request, res: Response) => {
 		await restChef.save();
 		res.status(201).json(newrest);
 	} catch (err) {
-		alert(err);
 		throw err;
 	}
 };
