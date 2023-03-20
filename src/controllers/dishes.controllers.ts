@@ -39,21 +39,20 @@ export const postDish = async (req: Request, res: Response) => {
 };
 export const deleteDishes = async (req: Request, res: Response) => {
 	try {
-		const restaurant = await RestaurantsModal.findById(req.body.dishID);
-		if (!restaurant) {
-			return res.status(404).send('Restaurant not found');
-		}
+		// const restaurant = await RestaurantsModal.findById(req.body.dishID);
+		// if (!restaurant) {
+		// 	return res.status(404).send('Restaurant not found');
+		// }
+		// const dishIndex: number =
+		// 	restaurant.dishes?.findIndex(
+		// 		(dish: any) => dish._id.toString() === req.body.id
+		// 	) ?? -1;
+		// if (dishIndex === -1) {
+		// 	return res.status(404).send('Dish not found');
+		// }
 
-		const dishIndex: number =
-			restaurant.dishes?.findIndex(
-				(dish: any) => dish._id.toString() === req.body.id
-			) ?? -1;
-		if (dishIndex === -1) {
-			return res.status(404).send('Dish not found');
-		}
-
-		const removedDish = restaurant.dishes?.splice(dishIndex, 1)[0];
-		await restaurant.save();
+		// const removedDish = restaurant.dishes?.splice(dishIndex, 1)[0];
+		// await restaurant.save();
 
 		const dishes = await deleteDish(req.body.id);
 		return res.status(200).json({
