@@ -40,8 +40,8 @@ export const newChef = async (req: Request, res: Response) => {
 		}
 		const newchef = await createChef(req.body);
 		res.status(201).json(newchef);
-	} catch (err: any) {
-		console.log(err);
+	} catch (err) {
+		alert(err);
 		throw err;
 	}
 };

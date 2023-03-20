@@ -32,36 +32,30 @@ export const postDish = async (req: Request, res: Response) => {
 			return res.status(404).send('Restaurant not found');
 		}
 		restaurant.dishes?.push(dish._id);
-		// const newdish = await dishOrder(req.body);
-		// const restaurant = await RestaurantsModal.findById(restId);
-		// if (!restaurant) {
-		// 	return res.status(404).send('Restaurant not found');
-		// }
-		// restaurant.dishes?.push(req.body._id);
 		await restaurant.save();
 		res.status(201).json(newdish);
 	} catch (err) {
-		console.log(err);
+		alert(err);
 		throw err;
 	}
 };
 export const deleteDishes = async (req: Request, res: Response) => {
 	try {
-		// const restaurant = await RestaurantsModal.findById(req.body.dishID);
-		// if (!restaurant) {
-		// 	return res.status(404).send('Restaurant not found');
-		// }
+		const restaurant = await RestaurantsModal.findById(req.body.dishID);
+		if (!restaurant) {
+			return res.status(404).send('Restaurant not found');
+		}
 
-		// const dishIndex: number =
-		// 	restaurant.dishes?.findIndex(
-		// 		(dish: any) => dish._id.toString() === req.body.id
-		// 	) ?? -1;
-		// if (dishIndex === -1) {
-		// 	return res.status(404).send('Dish not found');
-		// }
+		const dishIndex: number =
+			restaurant.dishes?.findIndex(
+				(dish: any) => dish._id.toString() === req.body.id
+			) ?? -1;
+		if (dishIndex === -1) {
+			return res.status(404).send('Dish not found');
+		}
 
-		// const removedDish = restaurant.dishes?.splice(dishIndex, 1)[0];
-		// await restaurant.save();
+		const removedDish = restaurant.dishes?.splice(dishIndex, 1)[0];
+		await restaurant.save();
 
 		const dishes = await deleteDish(req.body.id);
 		return res.status(200).json({
@@ -70,7 +64,6 @@ export const deleteDishes = async (req: Request, res: Response) => {
 			message: 'Successfully removed dish',
 		});
 	} catch (err) {
-		console.log(err);
 		return res.status(500).json({
 			status: 500,
 			message: 'Internal server error',

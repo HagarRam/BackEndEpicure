@@ -12,7 +12,6 @@ export const getAllRestaurants = async (req: Request, res: Response) => {
 		const restaurants = await getRestaurants();
 		return res.status(200).json(restaurants);
 	} catch (err) {
-		console.log(err);
 		throw err;
 	}
 };
@@ -26,7 +25,6 @@ export const deleteRest = async (req: Request, res: Response) => {
 			message: 'Successfully removed chef',
 		});
 	} catch (err) {
-		console.log(err);
 		return res.status(500).json({
 			status: 500,
 			message: 'Internal server error',
@@ -65,7 +63,7 @@ export const newRest = async (req: Request, res: Response) => {
 		await restChef.save();
 		res.status(201).json(newrest);
 	} catch (err) {
-		console.log(err);
+		alert(err);
 		throw err;
 	}
 };
