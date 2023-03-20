@@ -30,12 +30,12 @@ export const removeRest = async (restId: string) => {
 };
 
 export const newRestaurant = async (rest: IRestaurants) => {
+	const newRest = new RestaurantsModal(rest);
 	try {
-		const newRest = await newRestaurant(rest);
-		const createdRest = await RestaurantsModal.create(newRest);
-		return createdRest;
-	} catch (error) {
-		console.error(error);
-		throw error;
+		await newRest.save();
+		return newRest;
+	} catch (err) {
+		console.log(err);
+		throw err;
 	}
 };
