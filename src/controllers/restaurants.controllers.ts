@@ -54,16 +54,6 @@ export const newRest = async (req: Request, res: Response) => {
 		if (oldrest) {
 			return res.status(409).send('User Already Exist. Please write again');
 		}
-		const rest = await RestaurantsModal.create({
-			name,
-			address,
-			chef,
-			chefId,
-			img,
-			openDays,
-			openHours,
-			rating,
-		});
 		const newrest = await newRestaurant(req.body);
 		const restChef = await chefsModal.findById(chefId);
 		if (!restChef) {
