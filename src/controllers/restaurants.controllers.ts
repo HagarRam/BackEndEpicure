@@ -54,23 +54,23 @@ export const newRest = async (req: Request, res: Response) => {
 		if (oldrest) {
 			return res.status(409).send('User Already Exist. Please write again');
 		}
-		// const rest = await RestaurantsModal.create({
-		// 	name,
-		// 	address,
-		// 	chef,
-		// 	chefId,
-		// 	img,
-		// 	openDays,
-		// 	openHours,
-		// 	rating,
-		// });
+		const rest = await RestaurantsModal.create({
+			name,
+			address,
+			chef,
+			chefId,
+			img,
+			openDays,
+			openHours,
+			rating,
+		});
 		const newrest = await newRestaurant(req.body);
-		// const restChef = await chefsModal.findById(chefId);
-		// if (!restChef) {
-		// 	return res.status(404).send('chef not found');
-		// }
-		// restChef.restaurant?.push(newrest._id);
-		// await restChef.save();
+		const restChef = await chefsModal.findById(chefId);
+		if (!restChef) {
+			return res.status(404).send('chef not found');
+		}
+		restChef.restaurant?.push(newrest._id);
+		await restChef.save();
 		res.status(201).json(newrest);
 	} catch (err) {
 		console.log(err);

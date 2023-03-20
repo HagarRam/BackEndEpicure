@@ -8,7 +8,7 @@ export interface IRestaurants {
 	name: string;
 	address?: string[];
 	chef: string;
-	chefid?: number;
+	chefId?: number;
 	openHours?: string[];
 	openDays?: number[];
 	openYear?: number;
@@ -39,7 +39,7 @@ export const restaurantsSchema = new Schema<IRestaurants>({
 	name: { type: String, required: true },
 	address: { type: [String], required: false },
 	chef: { type: String, required: true },
-	chefid: { type: Number, required: false },
+	chefId: { type: Number, required: false },
 	openHours: { type: [String], required: false },
 	openDays: { type: [Number], required: false },
 	openYear: { type: [Number], required: false },

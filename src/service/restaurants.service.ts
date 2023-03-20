@@ -31,7 +31,7 @@ export const removeRest = async (restId: string) => {
 
 export const newRestaurant = async (rest: IRestaurants) => {
 	const newRest = new RestaurantsModal(rest);
-	const restChef = await chefsModal.findById(rest.chefid);
+	const restChef = await chefsModal.findById(rest.chefId);
 	restChef?.restaurant?.push(newRest._id);
 	await restChef?.save();
 	try {
